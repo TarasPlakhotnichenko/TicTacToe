@@ -10,7 +10,7 @@ import java.util.Random;
 public class Memory {
     private Integer[][] btns2d = new Integer[3][3]; //a 2d game field of buttons converted from consequitive list of buttons -  btns
     private final List<Integer> btns; //list of buttons
-    private List<Integer> sequence = new ArrayList<>(); //a queue of buttons pushed
+    private ArrayList<Integer> sequence = new ArrayList<>(); //a queue of buttons pushed
     private Integer[][] game2d = new Integer[3][3]; //2d array of moves taken or in other words - values choiced - 1 or 0"
     private String theWinner;
 
@@ -29,6 +29,14 @@ public class Memory {
         }
         this.btns = btns;
     }
+
+    //public Integer[][] getCurrentGameField(){
+    //    return this.game2d;
+    //}
+
+    //public List<Integer> getCurrentMoveQueue() {
+    //    return this.sequence;
+    //}
 
 
     public boolean checkLegalMove(Integer id){

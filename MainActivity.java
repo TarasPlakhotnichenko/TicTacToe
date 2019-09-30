@@ -1,26 +1,79 @@
 package ru.tarasplakhotnichenko.tictactoe;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-//import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-//import android.content.res.Resources;
 import android.os.Bundle;
+//import android.util.Log;
 import android.view.View;
-//import android.view.ViewDebug;
 import android.widget.Button;
 import android.widget.Toast;
+
+import java.util.ArrayList;
 import java.util.Arrays;
-//import java.util.Collections;
+
 
 public class MainActivity extends AppCompatActivity {
 
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void onCreate(Bundle state) {
+        super.onCreate(state);
         setContentView(R.layout.activity_main);
+        //load(state);
+        //Log.i(MainActivity.class.getName(), "onCreate");
     }
+
+/*
+    private  void load(Bundle state) {
+        final String ANS = "answers";
+        Integer[][] answers = memory.getCurrentGameField();
+        if (state != null) {
+            //
+        }
+    }
+
+
+    @Override
+    protected void onResume(){
+       super.onResume();
+       Log.i(MainActivity.class.getName(), "onResume");
+    }
+
+    @Override
+    protected void onStart(){
+       super.onStart();
+       Log.i(MainActivity.class.getName(), "onStart");
+    }
+
+
+    @Override
+    protected void onPause() {
+       super.onPause();
+       Log.i(MainActivity.class.getName(), "onPause");
+    }
+    */
+
+    //@Override
+    //Envoked every time app is getting inactive  that is  paused, stopped or destroyed
+    /*
+    protected void onSaveInstanceState (Bundle state) {
+        ArrayList<Integer> gameField = new ArrayList<>();
+        super.onSaveInstanceState(state);
+        Log.i(MainActivity.class.getName(), "onSaveInstanceState");
+        //Transition from 2D array to ArrayList
+        for (int j = 0; j < memory.getCurrentGameField().length; j++) {
+            for (int i = 0; i < memory.getCurrentGameField().length; i++) {
+                gameField.add(memory.getCurrentGameField()[j][i]);
+            }
+        }
+        state.putIntegerArrayList("gameField",gameField);
+        state.putIntegerArrayList("getQueue", (ArrayList<Integer>) memory.getCurrentMoveQueue());
+    }
+
+     */
+
+    //---------------------------------------------------------------------------------
 
     private Memory memory = new Memory(
             Arrays.asList(R.id.button1, R.id.button2, R.id.button3, R.id.button4,  R.id.button5, R.id.button6, R.id.button7, R.id.button8, R.id.button9));
@@ -36,7 +89,6 @@ public class MainActivity extends AppCompatActivity {
         if (memory.checkLegalMove(view.getId())) {
             memory.addAnswer(view.getId());
             ((Button) view).setText("X");
-
             if (!memory.isFinish() && !memory.isWinner()) {
                 Button btn = MainActivity.this.findViewById(memory.rnd());
                 ((Button) btn).setText("0");
@@ -68,6 +120,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
                         setContentView(R.layout.activity_main);
+                        //onStart();
                     }
                 });
 
